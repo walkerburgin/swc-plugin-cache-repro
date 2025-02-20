@@ -7,7 +7,7 @@ Standalone repro for an issue with SWC and concurrent acess to the plugin WASM b
 This fails reliably on my machine:
 
 ```bash
-➜  rm -rf .swc && rm -rf build && useq 0 499 | xargs -P 25 -I{} ./bin/swc-darwin-arm64-v1.10.18 compile --config-json '{"jsc":{"experimental":{ "cacheRoot": ".swc", "plugins":[["./node_modules/@swc/plugin-formatjs", { }]]}}}' --out-file ./build/Component{}.js src/Component{}.tsx
+➜  rm -rf .swc && rm -rf build && seq 0 499 | xargs -P 25 -I{} ./bin/swc-darwin-arm64-v1.10.18 compile --config-json '{"jsc":{"experimental":{ "cacheRoot": ".swc", "plugins":[["./node_modules/@swc/plugin-formatjs", { }]]}}}' --out-file ./build/Component{}.js src/Component{}.tsx
 xargs: ./bin/swc-darwin-arm64: terminated with signal 10; aborting
 ```
 
